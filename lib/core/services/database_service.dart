@@ -170,6 +170,17 @@ class DatabaseService {
     }
   }
 
+  /// add Cart
+  Future<void> deleteCart(index) async{
+    try{
+      var box = await Hive.openBox<Cart>('cart');
+      box.deleteAt(index);
+    }catch(e,s){
+      print( "Exception deleteCart"+ e.toString());
+      print(s);
+    }
+  }
+
 
   Future<List<Cart>?> getAllCart() async{
     List<Cart> carts = [];

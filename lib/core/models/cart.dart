@@ -5,9 +5,11 @@ part  'cart.g.dart';
 @HiveType(typeId: 0)
 class Cart extends HiveObject{
   @HiveField(0)
-  late double totalAmount;
+  late int id;
   @HiveField(1)
-  late int totalItemInCart;
+  late String name;
   @HiveField(2)
-  late Item item;
+  late String price;
+  @HiveField(3)
+  late String img;
 }

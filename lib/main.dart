@@ -16,9 +16,9 @@ import 'package:path_provider/path_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDir = await getApplicationDocumentsDirectory();
-  await Hive.initFlutter(appDocumentDir.toString());
+  await Hive.initFlutter();
   Hive.registerAdapter<Cart>(CartAdapter());
-  await Hive.openBox<Cart>('cart');
+//  await Hive.openBox<Cart>('cart');
   setupLocator();
   runApp(MyApp());
 }

@@ -20,9 +20,10 @@ class CartViewModel extends BaseViewModel{
     try{
       carts = (await _dbService.getAllCart())!;
       if(carts.isNotEmpty){
-        carts.forEach((element) {
-          totalItemsInCart = element.totalItemInCart;
-              print(element.item.toJson());});
+        for(int i = 0; i < carts.length; i++){
+          print(carts[i].price);
+        }
+        totalItemsInCart = carts.length;
       }
     }catch(e,s){
       print("CartViewModel getAllCartItems() Exception $e");
@@ -34,11 +35,12 @@ class CartViewModel extends BaseViewModel{
   addItemToCart(Item item) async{
     setState(ViewState.busy);
     try{
-      totalItemsInCart += 1;
-      Cart cart = Cart();
-      cart.totalItemInCart =  totalItemsInCart;
-      cart.item = item;
-      cart.totalAmount = double.parse("${item.price}");
+      var cart = Cart()
+        ..id = item.id!
+        ..price = item.price!
+        ..name = item.name!
+        ..img = item.img!;
+
       await _dbService.addCart(cart);
     }catch(e,s){
       print("CartViewModel addItemToCart() Exception $e");

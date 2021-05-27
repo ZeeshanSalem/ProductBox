@@ -1,6 +1,7 @@
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/ui/screens/add_edit_item/add_edit_item_screen.dart';
+import 'package:f2_base_project/ui/screens/cart/cart_screen.dart';
 import 'package:f2_base_project/ui/screens/items/items_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,8 @@ class _RootScreenState extends State<RootScreen> {
   /// List of screen for bottom Navigation bar
   List<Widget> screenList = [
     ItemListScreen(),
-    ItemListScreen(),
-//    AddEditItemScreen(),
+//    ItemListScreen(),
+    CartScreen(),
     ItemListScreen()
   ];
 

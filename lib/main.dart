@@ -1,10 +1,12 @@
 import 'package:f2_base_project/core/others/localization_class.dart';
+import 'package:f2_base_project/ui/screens/cart/cart_screen_view_model.dart';
 import 'package:f2_base_project/ui/screens/items/items_list.dart';
 import 'package:f2_base_project/ui/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'core/models/cart.dart';
 import 'locator.dart';
 import 'package:hive/hive.dart';
@@ -29,14 +31,19 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(375, 810),
-       builder:()=> GetMaterialApp(
-        translations: LocalizationClass(),
-        locale: Locale('en'),
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: RootScreen(),
+       builder:()=> MultiProvider(
+         providers: [
+           ChangeNotifierProvider(create: (context) => CartViewModel()),
+         ],
+         child: GetMaterialApp(
+          translations: LocalizationClass(),
+          locale: Locale('en'),
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: RootScreen(),
       ),
+       ),
     );
   }
 }

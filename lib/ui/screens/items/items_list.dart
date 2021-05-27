@@ -95,7 +95,9 @@ class ItemListScreen extends StatelessWidget {
                                         style: itemTextStyle.copyWith(color: Colors.green),)),
 
                                     TextButton(
-                                        onPressed: (){},
+                                        onPressed: (){
+                                          model.deleteItem(model.items[index]);
+                                        },
                                         child: Text("Delete",
                                           style: itemTextStyle.copyWith(color: Colors.red),)),
                                   ],

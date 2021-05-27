@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddEditItemScreen extends StatefulWidget {
-  final Item? item;
+  final Item item;
   final bool isEdit;
-  AddEditItemScreen({this.item, this.isEdit = false});
+  AddEditItemScreen({required this.item, this.isEdit = false});
 
   @override
   _AddEditItemScreenState createState() => _AddEditItemScreenState();
@@ -23,8 +23,8 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
 
   @override
   void initState() {
-    name = TextEditingController(text: widget?.item?.name);
-    price = TextEditingController(text: widget?.item?.price);
+    name = TextEditingController(text: widget?.item?.name?? "");
+    price = TextEditingController(text: widget?.item?.price?? "");
     super.initState();
   }
 
@@ -105,7 +105,7 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
                       text: "${widget.isEdit ?"UPDATE" : "SAVE"} ADDRESS",
                       textColor: Colors.black,
                       onPressed: (){
-                        if(_formKey!.currentState!.validate()){
+                        if(_formKey.currentState!.validate()){
                           Navigator.pop(context, widget.item);
                         }
                       },

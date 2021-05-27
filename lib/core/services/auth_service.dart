@@ -42,62 +42,62 @@ class AuthService {
   /// 1) Getting auth tokens from sharePrefs
   /// 2) Getting user data from the backend
   ///
-  doSetup() async {
-    print("@authDataService/doSetup");
-    accessToken = await _sharedPrefs.getAccessToken();
-    onboardingCount = await _sharedPrefs.getOnboardingPageCount();
-    print("Auth Token: $accessToken");
-
-    isLogin = accessToken != null;
-    if (isLogin) {
-      try {
-        UserProfileResponse response = await _dbService.getUserProfile();
-        if (response.success) {
-          userProfile = response.userProfile;
-        } else {
-          print('Login failed for error: ${response.error}');
-        }
-      } on ResponseException catch (e) {
-        /// Show network request failed alert
-        print(e);
-      }
-    }
-  }
-
-  updateAccessToken(newToken) async {
-    accessToken = newToken;
-    await _sharedPrefs.saveAccessToken(accessToken!);
-  }
-
-  signupWithEmailAndPassword(SignUpBody body) async {
-    late AuthResponse response;
-    try {
-      response = await _dbService.createUserAccount(body);
-      if (response.success) {
-        this.accessToken = response.accessToken;
-        updateAccessToken(accessToken);
-      }
-      return response;
-    } on ResponseException catch (e) {
-      AuthResponse(false, error: e.cause);
-      return false;
-    }
-  }
-
-  loginWithEmailAndPassword(LoginBody body) async {
-    late AuthResponse response;
-    try {
-      response = await _dbService.loginWithEmailAndPassword(body);
-      if (response.success) {
-        this.accessToken = response.accessToken;
-        updateAccessToken(accessToken);
-      }
-      return response;
-    } on ResponseException catch (e) {
-      AuthResponse(false, error: e.cause);
-      return false;
-    }
-  }
+//  doSetup() async {
+//    print("@authDataService/doSetup");
+//    accessToken = await _sharedPrefs.getAccessToken();
+//    onboardingCount = await _sharedPrefs.getOnboardingPageCount();
+//    print("Auth Token: $accessToken");
+//
+//    isLogin = accessToken != null;
+//    if (isLogin) {
+//      try {
+//        UserProfileResponse response = await _dbService.getUserProfile();
+//        if (response.success) {
+//          userProfile = response.userProfile;
+//        } else {
+//          print('Login failed for error: ${response.error}');
+//        }
+//      } on ResponseException catch (e) {
+//        /// Show network request failed alert
+//        print(e);
+//      }
+//    }
+//  }
+//
+//  updateAccessToken(newToken) async {
+//    accessToken = newToken;
+//    await _sharedPrefs.saveAccessToken(accessToken!);
+//  }
+//
+//  signupWithEmailAndPassword(SignUpBody body) async {
+//    late AuthResponse response;
+//    try {
+//      response = await _dbService.createUserAccount(body);
+//      if (response.success) {
+//        this.accessToken = response.accessToken;
+//        updateAccessToken(accessToken);
+//      }
+//      return response;
+//    } on ResponseException catch (e) {
+//      AuthResponse(false, error: e.cause);
+//      return false;
+//    }
+//  }
+//
+//  loginWithEmailAndPassword(LoginBody body) async {
+//    late AuthResponse response;
+//    try {
+//      response = await _dbService.loginWithEmailAndPassword(body);
+//      if (response.success) {
+//        this.accessToken = response.accessToken;
+//        updateAccessToken(accessToken);
+//      }
+//      return response;
+//    } on ResponseException catch (e) {
+//      AuthResponse(false, error: e.cause);
+//      return false;
+//    }
+//  }
 
   signupWithApple() {}
 

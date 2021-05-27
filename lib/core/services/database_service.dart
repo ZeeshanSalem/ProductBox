@@ -11,67 +11,67 @@ import '../constants/api_end_points.dart';
 import 'api_services.dart';
 
 class DatabaseService {
-  Future<UserProfileResponse> getUserProfile() async {
-    late UserProfileResponse userProfileResponse;
-    Dio dio = ApiServices().launch();
-
-    final response =
-        await dio.get('${EndPoints.baseUrl}${EndPoints.userProfile}');
-
-    ///
-    /// Status code = 200 means the request was successfull and return the data
-    /// otherwise throw an exception which must be caught at the other end
-    /// from where this class method is triggered
-    ///
-    if (response.statusCode == 200) {
-      userProfileResponse = UserProfileResponse.fromJson(response.data);
-      return userProfileResponse;
-    } else {
-      throw ResponseException('Network request failed');
-    }
-  }
-
-  Future<AuthResponse> createUserAccount(SignUpBody body) async {
-    late AuthResponse authResponse;
-    Dio dio = ApiServices().launch();
-
-    final response = await dio.post(
-        '${EndPoints.baseUrl}${EndPoints.createAccount}',
-        data: body.toJson());
-
-    ///
-    /// Status code = 200 means the request was successfull and return the data
-    /// otherwise throw an exception which must be caught at the other end
-    /// from where this class method is triggered
-    ///
-    if (response.statusCode == 200) {
-      authResponse = AuthResponse.fromJson(response.data);
-      return authResponse;
-    } else {
-      throw ResponseException('Network request failed');
-    }
-  }
-
-  Future<AuthResponse> loginWithEmailAndPassword(LoginBody body) async {
-    late AuthResponse authResponse;
-    Dio dio = ApiServices().launch();
-
-    final response = await dio.post(
-        '${EndPoints.baseUrl}${EndPoints.createAccount}',
-        data: body.toJson());
-
-    ///
-    /// Status code = 200 means the request was successfull and return the data
-    /// otherwise throw an exception which must be caught at the other end
-    /// from where this class method is triggered
-    ///
-    if (response.statusCode == 200) {
-      authResponse = AuthResponse.fromJson(response.data);
-      return authResponse;
-    } else {
-      throw ResponseException('Network request failed');
-    }
-  }
+//  Future<UserProfileResponse> getUserProfile() async {
+//    late UserProfileResponse userProfileResponse;
+//    Dio dio = ApiServices().launch();
+//
+//    final response =
+//        await dio.get('${EndPoints.baseUrl}${EndPoints.userProfile}');
+//
+//    ///
+//    /// Status code = 200 means the request was successfull and return the data
+//    /// otherwise throw an exception which must be caught at the other end
+//    /// from where this class method is triggered
+//    ///
+//    if (response.statusCode == 200) {
+//      userProfileResponse = UserProfileResponse.fromJson(response.data);
+//      return userProfileResponse;
+//    } else {
+//      throw ResponseException('Network request failed');
+//    }
+//  }
+//
+//  Future<AuthResponse> createUserAccount(SignUpBody body) async {
+//    late AuthResponse authResponse;
+//    Dio dio = ApiServices().launch();
+//
+//    final response = await dio.post(
+//        '${EndPoints.baseUrl}${EndPoints.createAccount}',
+//        data: body.toJson());
+//
+//    ///
+//    /// Status code = 200 means the request was successfull and return the data
+//    /// otherwise throw an exception which must be caught at the other end
+//    /// from where this class method is triggered
+//    ///
+//    if (response.statusCode == 200) {
+//      authResponse = AuthResponse.fromJson(response.data);
+//      return authResponse;
+//    } else {
+//      throw ResponseException('Network request failed');
+//    }
+//  }
+//
+//  Future<AuthResponse> loginWithEmailAndPassword(LoginBody body) async {
+//    late AuthResponse authResponse;
+//    Dio dio = ApiServices().launch();
+//
+//    final response = await dio.post(
+//        '${EndPoints.baseUrl}${EndPoints.createAccount}',
+//        data: body.toJson());
+//
+//    ///
+//    /// Status code = 200 means the request was successfull and return the data
+//    /// otherwise throw an exception which must be caught at the other end
+//    /// from where this class method is triggered
+//    ///
+//    if (response.statusCode == 200) {
+//      authResponse = AuthResponse.fromJson(response.data);
+//      return authResponse;
+//    } else {
+//      throw ResponseException('Network request failed');
+//    }
+//  }
 
   Future<List<Item>?> getItemFromDB() async{
     List<Item> items = [];
@@ -89,6 +89,24 @@ class DatabaseService {
 
       return items;
 
+    }catch(e,s){
+      print( "Exception"+ e.toString());
+      print(s);
+    }
+  }
+
+  Future<bool?> deleteItem(id) async{
+    bool isDeleted = false;
+    try{
+      Dio dio = ApiServices().launch();
+      final Response response =
+          await dio.delete("${EndPoints.baseUrl}${EndPoints.items}/$id");
+
+      if(response.statusCode == 204){
+        isDeleted = true;
+      }
+
+      return isDeleted;
     }catch(e,s){
       print( "Exception"+ e.toString());
       print(s);

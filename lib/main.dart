@@ -1,5 +1,6 @@
 import 'package:f2_base_project/core/others/localization_class.dart';
 import 'package:f2_base_project/ui/screens/items/items_list.dart';
+import 'package:f2_base_project/ui/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/route_manager.dart';
@@ -30,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: ItemListScreen(),
+        home: RootScreen(),
       ),
     );
   }

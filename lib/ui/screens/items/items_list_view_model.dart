@@ -1,9 +1,11 @@
+import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/response/items.dart';
-
+import 'package:get/get.dart';
 import '../../../core/others/base_view_model.dart';
 import '../../../core/services/database_service.dart';
 import '../../../locator.dart';
+import 'package:flutter/material.dart';
 
 class ItemListViewModel extends BaseViewModel{
   final _dbService = locator<DatabaseService>();
@@ -13,7 +15,7 @@ class ItemListViewModel extends BaseViewModel{
   }
 
   getAllItems() async{
-    setState(ViewState.idle);
+    setState(ViewState.busy);
     try{
    items =  (await _dbService.getItemFromDB())!;
    if(items.isNotEmpty){
@@ -27,5 +29,32 @@ class ItemListViewModel extends BaseViewModel{
     }
     setState(ViewState.idle);
 
+  }
+
+  /// Delete Item
+  deleteItem(Item item) async{
+    setState(ViewState.busy);
+    try{
+      bool isDeleted = (await _dbService.deleteItem(item.id))!;
+
+      if(isDeleted){
+        items.remove(item);
+        Get.snackbar("Success",
+            "You have Successfully deleted item No # ${item.id}",
+            colorText: Colors.black,
+            backgroundColor: primaryColor,
+            duration: Duration(seconds: 1));
+      } else{
+        Get.snackbar("Failure",
+            "Sorry, You can;t deleted item No # ${item.id}",
+            colorText: Colors.white,
+            backgroundColor: Colors.redAccent,
+            duration: Duration(seconds: 1));
+      }
+    }catch(e,s){
+      print("@ItemsViewModel deleteItem Exception : $e");
+      print(s);
+    }
+    setState(ViewState.idle);
   }
 }

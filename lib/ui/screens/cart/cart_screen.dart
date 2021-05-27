@@ -34,7 +34,6 @@ class CartScreen extends StatelessWidget {
 
   Widget _cartTile(CartViewModel model, int index){
     return Container(
-//      height: 200.h,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
         color: Colors.white,

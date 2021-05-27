@@ -1,11 +1,13 @@
+import 'package:badges/badges.dart';
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
-import 'package:f2_base_project/ui/screens/add_edit_item/add_edit_item_screen.dart';
 import 'package:f2_base_project/ui/screens/cart/cart_screen.dart';
+import 'package:f2_base_project/ui/screens/cart/cart_screen_view_model.dart';
 import 'package:f2_base_project/ui/screens/items/items_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RootScreen extends StatefulWidget {
   @override
@@ -34,7 +36,7 @@ class _RootScreenState extends State<RootScreen> {
   }
   @override
   Widget build(BuildContext context) {
-//    final cartViewModel = Provider.of<CartViewModel>(context);
+    final cartViewModel = Provider.of<CartViewModel>(context);
     return SafeArea(
       child: Scaffold(
 
@@ -75,7 +77,7 @@ class _RootScreenState extends State<RootScreen> {
                       icon: selectedScreen == 0 ? Icons.home : Icons.home_outlined,
                       label: "Home"),
                   bottomNavItem(
-//                      count: cartViewModel.cart.totalItemsInCart,
+                      count: cartViewModel.totalItemsInCart,
                       icon: selectedScreen == 1
                           ? Icons.shopping_bag
                           : Icons.shopping_bag_outlined,
@@ -97,13 +99,13 @@ class _RootScreenState extends State<RootScreen> {
   ///
   bottomNavItem({IconData? icon, String? label, int? count}) {
     return BottomNavigationBarItem(
-      icon: Icon(icon!),
-//      icon:  Badge(
-//          animationType: BadgeAnimationType.fade,
-//          showBadge: count == null || count < 1 ? false : true,
-//          badgeColor: Colors.black,
-//          badgeContent: Text("${count ?? ""}", style: headingTextStyle.copyWith(fontSize: 12, color: Colors.white),),
-//          child: Icon(icon)),
+//      icon: Icon(icon!),
+      icon:  Badge(
+          animationType: BadgeAnimationType.fade,
+          showBadge: count == null || count < 1 ? false : true,
+          badgeColor: Colors.black,
+          badgeContent: Text("${count ?? ""}", style: itemTextStyle.copyWith(fontSize: 12.sp, color: Colors.white),),
+          child: Icon(icon)),
       label: label,
     );
   }

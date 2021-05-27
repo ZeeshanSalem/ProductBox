@@ -5,6 +5,7 @@ import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/response/items.dart';
 import 'package:f2_base_project/ui/custom_widgets/image_container.dart';
 import 'package:f2_base_project/ui/screens/add_edit_item/add_edit_item_screen.dart';
+import 'package:f2_base_project/ui/screens/cart/cart_screen_view_model.dart';
 import 'package:f2_base_project/ui/screens/items/items_list_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ItemListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+
     return ChangeNotifierProvider(
       create: (context) => ItemListViewModel(),
       child: Consumer<ItemListViewModel>(
@@ -26,7 +29,7 @@ class ItemListScreen extends StatelessWidget {
                   )
                 : ListView.separated(
                     padding: EdgeInsets.symmetric(vertical: 60),
-                    itemBuilder: (context, index) => _itemTile(model, index),
+                    itemBuilder: (context, index) => _itemTile(model, index, context),
                     separatorBuilder: (context, index) => SizedBox(
                           height: 20.h,
                         ),
@@ -59,7 +62,8 @@ class ItemListScreen extends StatelessWidget {
     );
   }
 
-  Widget _itemTile(ItemListViewModel model, int index) {
+  Widget _itemTile(ItemListViewModel model, int index, BuildContext context) {
+    final cardViewModel = Provider.of<CartViewModel>(context);
     return InkWell(
       onTap: () async {
 //        Item item = await Get.to(AddEditItemScreen(
@@ -138,7 +142,9 @@ class ItemListScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        cardViewModel.addItemToCart(model.items[index]);
+                      },
                       child: Text(
                         "Add to Cart",
                         style: itemTextStyle.copyWith(color: Colors.green),

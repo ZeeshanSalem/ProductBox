@@ -30,6 +30,9 @@ dependencies:
   dio: ^4.0.0
   provider: any
   flutter_screenutil: ^5.0.0
+  # hive database
+  hive: ^2.0.3
+  hive_flutter: ^1.0.0
 
 
   # Firebase Plugins
@@ -44,6 +47,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  # hive database generators
+  build_runner: ^1.12.2
+  hive_generator: ^1.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

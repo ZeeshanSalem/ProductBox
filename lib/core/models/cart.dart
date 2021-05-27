@@ -1,4 +1,4 @@
-import 'package:f2_base_project/core/models/response/items.dart';
+import 'package:f2_base_project/core/models/items.dart';
 import 'package:hive/hive.dart';
 part  'cart.g.dart';
 

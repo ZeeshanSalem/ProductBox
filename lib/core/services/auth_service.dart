@@ -1,13 +1,8 @@
-import 'package:f2_base_project/core/models/body/login_body.dart';
-import 'package:f2_base_project/core/models/body/signup_body.dart';
-import 'package:f2_base_project/core/models/exceptions/response_exception.dart';
-import 'package:f2_base_project/core/models/response/signup_response.dart';
-import 'package:f2_base_project/core/models/response/user_profile_response.dart';
+
 import 'package:f2_base_project/core/models/user_profile.dart';
 
 import '../../locator.dart';
 import 'database_service.dart';
-import 'shared_prefs_service.dart';
 
 ///
 /// [AuthService] class contains all authentication related logic with following
@@ -29,7 +24,6 @@ class AuthService {
   late bool isLogin;
   String? accessToken;
   late int onboardingCount;
-  final _sharedPrefs = SharedPrefsService();
   final _dbService = locator<DatabaseService>();
   UserProfile? userProfile;
 
@@ -114,7 +108,5 @@ class AuthService {
     isLogin = false;
     accessToken = null;
     userProfile = null;
-    await _sharedPrefs.clearAccessToken();
-    await _sharedPrefs.clearRefreshToken();
   }
 }

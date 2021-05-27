@@ -2,7 +2,7 @@ import 'package:f2_base_project/core/constants/api_end_points.dart';
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
-import 'package:f2_base_project/core/models/response/items.dart';
+import 'package:f2_base_project/core/models/items.dart';
 import 'package:f2_base_project/ui/custom_widgets/image_container.dart';
 import 'package:f2_base_project/ui/screens/add_edit_item/add_edit_item_screen.dart';
 import 'package:f2_base_project/ui/screens/cart/cart_screen_view_model.dart';

@@ -1,6 +1,4 @@
-import 'package:f2_base_project/core/others/localization_class.dart';
 import 'package:f2_base_project/ui/screens/cart/cart_screen_view_model.dart';
-import 'package:f2_base_project/ui/screens/items/items_list.dart';
 import 'package:f2_base_project/ui/screens/root_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,10 +13,8 @@ import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final appDocumentDir = await getApplicationDocumentsDirectory();
   await Hive.initFlutter();
   Hive.registerAdapter<Cart>(CartAdapter());
-//  await Hive.openBox<Cart>('cart');
   setupLocator();
   runApp(MyApp());
 }
@@ -39,8 +35,6 @@ class _MyAppState extends State<MyApp> {
            ChangeNotifierProvider(create: (context) => CartViewModel()),
          ],
          child: GetMaterialApp(
-          translations: LocalizationClass(),
-          locale: Locale('en'),
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),

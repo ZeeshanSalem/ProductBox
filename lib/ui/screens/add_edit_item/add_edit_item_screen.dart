@@ -1,5 +1,5 @@
 import 'package:f2_base_project/core/constants/colors.dart';
-import 'package:f2_base_project/core/models/response/items.dart';
+import 'package:f2_base_project/core/models/items.dart';
 import 'package:f2_base_project/ui/custom_widgets/input_text_field.dart';
 import 'package:f2_base_project/ui/custom_widgets/rectangle_button.dart';
 import 'package:flutter/material.dart';

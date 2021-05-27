@@ -26,91 +26,7 @@ class ItemListScreen extends StatelessWidget {
                   )
                 : ListView.separated(
                     padding: EdgeInsets.symmetric(vertical: 60),
-                    itemBuilder: (context, index) => Container(
-                          margin: EdgeInsets.symmetric(horizontal: 15),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.r),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: greyColor.withOpacity(0.3),
-                                  offset: Offset(0.1, 1.0),
-                                  spreadRadius: 0.5,
-                                )
-                              ]),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ///
-                              /// Main Purpose of this check  img api endpints
-                              /// because there is problem in post api
-                              ///
-                              model.items[index].img == null
-                                  ? ImageContainer(
-                                      width: double.infinity,
-                                      height: 200.h,
-                                      assets:
-                                          "assets/static_assets/loading.png",
-                                    )
-                                  : ImageContainer(
-                                      width: double.infinity,
-                                      height: 200.h,
-                                      radius: 15.r,
-                                      url:
-                                          "${EndPoints.imgUrl}${model.items[index].img!.split("/").last}",
-                                    ),
-
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 10),
-                                child: Text(
-                                  "Items Id : ${model.items[index].id}",
-                                  style: itemTextStyle,
-                                ),
-                              ),
-
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Text(
-                                  "Items Name : ${model.items[index].name}",
-                                  style: itemTextStyle,
-                                ),
-                              ),
-
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 10),
-                                child: Text(
-                                  "Items Price : ${model.items[index].price}",
-                                  style: itemTextStyle,
-                                ),
-                              ),
-
-                              Padding(
-                                padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-
-                                    TextButton(
-                                        onPressed: (){},
-                                        child: Text("Add to Cart",
-                                        style: itemTextStyle.copyWith(color: Colors.green),)),
-
-                                    TextButton(
-                                        onPressed: (){
-                                          model.deleteItem(model.items[index]);
-                                        },
-                                        child: Text("Delete",
-                                          style: itemTextStyle.copyWith(color: Colors.red),)),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-
-
+                    itemBuilder: (context, index) => _itemTile(model, index),
                     separatorBuilder: (context, index) => SizedBox(
                           height: 20.h,
                         ),
@@ -119,9 +35,11 @@ class ItemListScreen extends StatelessWidget {
             /// Floating button For move to Add Shipping Address Screen
             ///
             floatingActionButton: FloatingActionButton(
-              onPressed: ()   async{
-                Item item = await Get.to(AddEditItemScreen(item: Item(),));
-                if(item != null){
+              onPressed: () async {
+                Item item = await Get.to(AddEditItemScreen(
+                  item: Item(),
+                ));
+                if (item != null) {
                   print(item.name);
                   model.addItem(item);
                 }
@@ -141,4 +59,103 @@ class ItemListScreen extends StatelessWidget {
     );
   }
 
+  Widget _itemTile(ItemListViewModel model, int index) {
+    return InkWell(
+      onTap: () async {
+//        Item item = await Get.to(AddEditItemScreen(
+//          item: Item(
+//            name: model.items[index].name,
+//            price: model.items[index].price,
+//
+//          ),
+//        ));
+//        if (item != null) {
+//          print(item.name);
+//          model.updateItem(item);
+//        }
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.r),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: greyColor.withOpacity(0.3),
+                offset: Offset(0.1, 1.0),
+                spreadRadius: 0.5,
+              )
+            ]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ///
+            /// Main Purpose of this check  img api endpints
+            /// because there is problem in post api
+            ///
+            model.items[index].img == null
+                ? ImageContainer(
+                    width: double.infinity,
+                    height: 200.h,
+                    assets: "assets/static_assets/loading.png",
+                  )
+                : ImageContainer(
+                    width: double.infinity,
+                    height: 200.h,
+                    radius: 15.r,
+                    url:
+                        "${EndPoints.imgUrl}${model.items[index].img!.split("/").last}",
+                  ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Text(
+                "Items Id : ${model.items[index].id}",
+                style: itemTextStyle,
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                "Items Name : ${model.items[index].name}",
+                style: itemTextStyle,
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Text(
+                "Items Price : ${model.items[index].price}",
+                style: itemTextStyle,
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Add to Cart",
+                        style: itemTextStyle.copyWith(color: Colors.green),
+                      )),
+                  TextButton(
+                      onPressed: () {
+                        model.deleteItem(model.items[index]);
+                      },
+                      child: Text(
+                        "Delete",
+                        style: itemTextStyle.copyWith(color: Colors.red),
+                      )),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }

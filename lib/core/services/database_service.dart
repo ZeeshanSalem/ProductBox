@@ -133,6 +133,25 @@ class DatabaseService {
     }
   }
 
+  Future<bool?> updateItem(Item item) async{
+    bool isItemUpdated = false;
+    try{
+      Dio dio = ApiServices().launch();
+      FormData formData = FormData.fromMap(item.toJson());
+      final Response response =
+      await dio.put("${EndPoints.baseUrl}${EndPoints.items}/${item.id}", data: formData);
+
+      if(response.statusCode == 200){
+        isItemUpdated = true;
+      }
+
+      return isItemUpdated;
+    }catch(e,s){
+      print( "Exception addItem"+ e.toString());
+      print(s);
+    }
+  }
+
 
 
 

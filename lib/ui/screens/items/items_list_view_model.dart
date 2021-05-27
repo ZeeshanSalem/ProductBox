@@ -86,4 +86,33 @@ class ItemListViewModel extends BaseViewModel{
     }
     setState(ViewState.idle);
   }
-}
+
+
+  updateItem(Item item) async{
+    setState(ViewState.busy);
+//    item.id = items.length + 1;
+//    item.img = "${EndPoints.imgUrl}bed.jpg";
+    try{
+      bool isUpdated = (await _dbService.updateItem(item))!;
+
+      if(isUpdated){
+        items.add(item);
+        Get.snackbar("Success",
+            "You have Successfully Update item No # ${item.id}.",
+            colorText: Colors.black,
+            backgroundColor: primaryColor,
+            duration: Duration(seconds: 1));
+      } else{
+        Get.snackbar("Failure",
+            "Sorry, You can;t update item No # ${item.id}",
+            colorText: Colors.white,
+            backgroundColor: Colors.redAccent,
+            duration: Duration(seconds: 1));
+      }
+    }catch(e,s){
+      print("@ItemsViewModel deleteItem Exception : $e");
+      print(s);
+    }
+    setState(ViewState.idle);
+  }
+  }

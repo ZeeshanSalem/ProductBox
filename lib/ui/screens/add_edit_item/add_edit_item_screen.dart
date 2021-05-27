@@ -102,7 +102,7 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
                     margin: EdgeInsets.only(top: 38, bottom: 20),
                     child: RectangularButton(
                       buttonColor: primaryColor,
-                      text: "${widget.isEdit ?"UPDATE" : "SAVE"} ADDRESS",
+                      text: "${widget.isEdit ?"UPDATE" : "SAVE"} Item",
                       textColor: Colors.black,
                       onPressed: (){
                         if(_formKey.currentState!.validate()){

@@ -93,13 +93,14 @@ class ItemListScreen extends StatelessWidget {
             /// Main Purpose of this check  img api endpints
             /// because there is problem in post api
             ///
-            model.items[index].img == null
-                ? ImageContainer(
-                    width: double.infinity,
-                    height: 200.h,
-                    assets: "assets/static_assets/loading.png",
-                  )
-                : ImageContainer(
+//            model.items[index].img == null
+//                ? ImageContainer(
+//                    width: double.infinity,
+//                    height: 200.h,
+//                    assets: "assets/static_assets/loading.png",
+//                  )
+//                :
+            ImageContainer(
                     width: double.infinity,
                     height: 200.h,
                     radius: 15.r,

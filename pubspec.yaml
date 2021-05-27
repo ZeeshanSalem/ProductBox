@@ -31,6 +31,7 @@ dependencies:
   provider: any
   flutter_screenutil: ^5.0.0
   badges: ^2.0.1
+  path_provider: ^2.0.2
   # hive database
   hive: ^2.0.3
   hive_flutter: ^1.0.0

@@ -21,7 +21,6 @@ class _RootScreenState extends State<RootScreen> {
     ItemListScreen(),
 //    ItemListScreen(),
     CartScreen(),
-    ItemListScreen()
   ];
 
   /// By Default screen index
@@ -81,10 +80,7 @@ class _RootScreenState extends State<RootScreen> {
                       icon: selectedScreen == 1
                           ? Icons.shopping_bag
                           : Icons.shopping_bag_outlined,
-                      label: "add item"),
-                  bottomNavItem(
-                      icon: selectedScreen == 2 ? Icons.person : Icons.person_outline,
-                      label: "Profile"),
+                      label: "Cart"),
                 ],
               ),
             ),

@@ -39,10 +39,10 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios, size: 20, color: Colors.black,),
               onPressed: (){
-                Navigator.of(context);
+                Navigator.pop(context);
               },
             ),
-            title: Text("Add Or Edit Item"),
+            title: widget.isEdit ? Text("Edit Item") :Text("Add Item"),
           ),
 
           body: SingleChildScrollView(
@@ -102,7 +102,7 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
                     margin: EdgeInsets.only(top: 38, bottom: 20),
                     child: RectangularButton(
                       buttonColor: primaryColor,
-                      text: "${widget.isEdit ?"UPDATE" : "SAVE"} Item",
+                      text: "${widget.isEdit ?"UPDATE" : "SAVE"} ITEM",
                       textColor: Colors.black,
                       onPressed: (){
                         if(_formKey.currentState!.validate()){

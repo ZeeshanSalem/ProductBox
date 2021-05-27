@@ -48,6 +48,7 @@ class CartViewModel extends BaseViewModel{
 
       await _dbService.addCart(cart);
       carts.add(cart);
+      totalItemsInCart++;
       Get.snackbar("Success",
           "You have Successfully Add item to cart.",
           colorText: Colors.black,

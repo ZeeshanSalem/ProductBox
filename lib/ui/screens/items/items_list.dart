@@ -97,13 +97,13 @@ class ItemListScreen extends StatelessWidget {
             /// Main Purpose of this check  img api endpints
             /// because there is problem in post api
             ///
-//            model.items[index].img == null
-//                ? ImageContainer(
-//                    width: double.infinity,
-//                    height: 200.h,
-//                    assets: "assets/static_assets/loading.png",
-//                  )
-//                :
+            model.items[index].img == null
+                ? ImageContainer(
+                    width: double.infinity,
+                    height: 200.h,
+                    assets: "assets/static_assets/loading.png",
+                  )
+                :
             ImageContainer(
                     width: double.infinity,
                     height: 200.h,
@@ -115,7 +115,7 @@ class ItemListScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Text(
-                "Items Id : ${model.items[index].id}",
+                "Items Id : ${model.items[index].id!}",
                 style: itemTextStyle,
               ),
             ),
@@ -123,7 +123,7 @@ class ItemListScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Text(
-                "Items Name : ${model.items[index].name}",
+                "Items Name : ${model.items[index].name ?? ""}",
                 style: itemTextStyle,
               ),
             ),
@@ -131,7 +131,7 @@ class ItemListScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Text(
-                "Items Price : ${model.items[index].price}",
+                "Items Price : ${model.items[index].price ?? ""}",
                 style: itemTextStyle,
               ),
             ),

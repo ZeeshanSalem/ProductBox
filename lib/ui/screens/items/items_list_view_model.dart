@@ -1,3 +1,4 @@
+import 'package:f2_base_project/core/constants/api_end_points.dart';
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
 import 'package:f2_base_project/core/models/response/items.dart';
@@ -47,6 +48,34 @@ class ItemListViewModel extends BaseViewModel{
       } else{
         Get.snackbar("Failure",
             "Sorry, You can;t deleted item No # ${item.id}",
+            colorText: Colors.white,
+            backgroundColor: Colors.redAccent,
+            duration: Duration(seconds: 1));
+      }
+    }catch(e,s){
+      print("@ItemsViewModel deleteItem Exception : $e");
+      print(s);
+    }
+    setState(ViewState.idle);
+  }
+
+  addItem(Item item) async{
+    setState(ViewState.busy);
+    item.id = items.length + 1;
+    item.img = "${EndPoints.imgUrl}bed.jpg";
+    try{
+      bool isAdded = (await _dbService.addItem(item))!;
+
+      if(isAdded){
+        items.add(item);
+        Get.snackbar("Success",
+            "You have Successfully Add item.",
+            colorText: Colors.black,
+            backgroundColor: primaryColor,
+            duration: Duration(seconds: 1));
+      } else{
+        Get.snackbar("Failure",
+            "Sorry, You can;t add item No",
             colorText: Colors.white,
             backgroundColor: Colors.redAccent,
             duration: Duration(seconds: 1));

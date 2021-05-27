@@ -90,7 +90,7 @@ class DatabaseService {
       return items;
 
     }catch(e,s){
-      print( "Exception"+ e.toString());
+      print( "GetItem Exception"+ e.toString());
       print(s);
     }
   }
@@ -108,7 +108,27 @@ class DatabaseService {
 
       return isDeleted;
     }catch(e,s){
-      print( "Exception"+ e.toString());
+      print( "delete Item Exception"+ e.toString());
+      print(s);
+    }
+  }
+
+
+  Future<bool?> addItem(Item item) async{
+    bool isItemAdded = false;
+    try{
+      Dio dio = ApiServices().launch();
+      FormData formData = FormData.fromMap(item.toJson());
+      final Response response =
+          await dio.post("${EndPoints.baseUrl}${EndPoints.items}/", data: formData);
+
+      if(response.statusCode == 200){
+        isItemAdded = true;
+      }
+
+      return isItemAdded;
+    }catch(e,s){
+      print( "Exception addItem"+ e.toString());
       print(s);
     }
   }

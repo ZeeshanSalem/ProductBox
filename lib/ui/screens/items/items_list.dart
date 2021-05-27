@@ -2,9 +2,12 @@ import 'package:f2_base_project/core/constants/api_end_points.dart';
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/constants/styles.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
+import 'package:f2_base_project/core/models/response/items.dart';
 import 'package:f2_base_project/ui/custom_widgets/image_container.dart';
+import 'package:f2_base_project/ui/screens/add_edit_item/add_edit_item_screen.dart';
 import 'package:f2_base_project/ui/screens/items/items_list_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -112,6 +115,26 @@ class ItemListScreen extends StatelessWidget {
                           height: 20.h,
                         ),
                     itemCount: model.items.length),
+
+            /// Floating button For move to Add Shipping Address Screen
+            ///
+            floatingActionButton: FloatingActionButton(
+              onPressed: ()   async{
+                Item item = await Get.to(AddEditItemScreen(item: Item(),));
+                if(item != null){
+                  print(item.name);
+                  model.addItem(item);
+                }
+              },
+              splashColor: Colors.black12,
+              backgroundColor: primaryColor,
+              child: Icon(
+                Icons.add,
+                size: 35.h,
+                color: Colors.black,
+              ),
+              tooltip: "Add Shipping Address",
+            ),
           ),
         ),
       ),

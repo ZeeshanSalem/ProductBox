@@ -23,8 +23,8 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
 
   @override
   void initState() {
-    name = TextEditingController(text: widget?.item?.name?? "");
-    price = TextEditingController(text: widget?.item?.price?? "");
+    name = TextEditingController(text: widget.item.name?? "");
+    price = TextEditingController(text: widget.item.price?? "");
     super.initState();
   }
 
@@ -64,7 +64,7 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
                     },
                     onSaved: (val){
                       setState(() {
-                        widget.item!.name = val.trim();
+                        widget.item.name = val.trim();
                       });
                     },
                     labelText: "Name",
@@ -74,7 +74,7 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
                   SizedBox(height: 10.h,),
 
                   InputTextField(
-                    textController: name,
+                    textController: price,
                     onValidation: (val){
                       if (val == null || val.length < 1) {
                         return 'Please enter item price';
@@ -84,7 +84,7 @@ class _AddEditItemScreenState extends State<AddEditItemScreen> {
                     },
                     onSaved: (val){
                       setState(() {
-                        widget.item!.name = val.trim();
+                        widget.item.price = val.trim();
                       });
                     },
                     labelText: "Price",

@@ -67,6 +67,7 @@ class ItemListScreen extends StatelessWidget {
     return InkWell(
       onTap: () async {
 //        Item item = await Get.to(AddEditItemScreen(
+//          isEdit: true,
 //          item: Item(
 //            name: model.items[index].name,
 //            price: model.items[index].price,

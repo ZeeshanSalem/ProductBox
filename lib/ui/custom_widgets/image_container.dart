@@ -12,7 +12,7 @@ class ImageContainer extends StatelessWidget {
   ImageContainer({this.height, this.width, this.assets = "assets/static_assets/loading.png",
     this.radius = 0,
     this.url,
-    this.fit = BoxFit.contain,
+    this.fit = BoxFit.cover,
   });
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class ImageContainer extends StatelessWidget {
           height: this.height,
           image: NetworkImage(url!),
           placeholder: AssetImage(this.assets),
-          fit: BoxFit.cover,
+          fit: fit,
         ),
       );
   }

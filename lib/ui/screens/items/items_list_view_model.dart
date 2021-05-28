@@ -1,7 +1,7 @@
 import 'package:f2_base_project/core/constants/api_end_points.dart';
 import 'package:f2_base_project/core/constants/colors.dart';
 import 'package:f2_base_project/core/enums/view_state.dart';
-import 'package:f2_base_project/core/models/response/items.dart';
+import 'package:f2_base_project/core/models/items.dart';
 import 'package:get/get.dart';
 import '../../../core/others/base_view_model.dart';
 import '../../../core/services/database_service.dart';
